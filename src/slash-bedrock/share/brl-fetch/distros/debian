@@ -24,8 +24,8 @@ speed_test_url() {
 list_mirrors() {
 	mirror_list_url='https://www.debian.org/mirror/list'
 	download -q "${mirror_list_url}" - |
-		awk '/Primary Debian mirror sites/,/<\/div/' |
-		grep -B3 "\<${distro_arch}\>" |
+		awk '/<table/,/<\/table/' |
+		grep -B1 "\<${distro_arch}\>" |
 		list_links |
 		grep "^http"
 }
